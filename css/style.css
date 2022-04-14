@@ -1,6 +1,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     background:  #E5E5E5;
+    
 }
 header {
     width: 100%;
@@ -13,12 +14,13 @@ header {
     top: 0;
     padding: 0 20px;
     box-sizing: border-box;
-
+    z-index: 10;
 }
 
 header > ion-icon {
     font-size: 40px;
 }
+
 
 
 footer {
@@ -47,4 +49,46 @@ footer > input {
 }
 footer input::placeholder {
     color: black
+}
+
+main {  
+    margin: 100px 0;
+    font-size: 14px;
+}
+
+main span {
+    padding: 0 2px;
+}
+
+.status {
+    height: 40px;
+    background: #DCDCDC;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.message {
+    height: 40px;
+    background: #FFFFFF;
+    margin-bottom: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+}
+
+.time {
+    color: #AAAAAA;
+}
+
+.from,
+.to {
+    font-weight: 700;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
 }
