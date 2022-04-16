@@ -1,8 +1,15 @@
+
+let user = prompt('Digite seu nome:');
+    
+let username = { name: user};
+
+
 function loadMessage() {
     const load = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
 
     load.then(loading);
 }
+
 
 function loading(data) {
     
@@ -44,4 +51,52 @@ function loading(data) {
     }
 }
 
-setInterval(loadMessage,5000);
+function enterChat() {
+    const userChat = 
+    axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', username);
+
+    userChat.then(sucesss);
+    userChat.catch(isUserIdAlreadyused);
+
+    function isUserIdAlreadyused(data) {
+        user = prompt('Digite seu nome:');
+        enterChat();
+    }
+    
+    function sucesss(data) {
+        setInterval(() => {
+            axios.post(
+                'https://mock-api.driven.com.br/api/v6/uol/status',username)
+        },5000);
+        
+    }
+    
+}
+
+
+enterChat();
+
+setInterval(loadMessage,3000);
+
+
+function sendMsgToServer() {
+    let msgContent = document.querySelector('.sendMessage');
+    sendMessage(msgContent.value);
+    msgContent.value ='';
+
+}
+function sendMessage(message) {
+    
+
+    let messageContent = {
+        from: user,
+	    to: "Todos",
+	    text: message,
+	    type: "message" // ou "private_message" para o bônus
+    }
+
+
+    const send = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages',messageContent);
+
+
+}
