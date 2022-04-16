@@ -56,6 +56,12 @@ main {
     font-size: 14px;
 }
 
+body.color{
+    background: #FFFFFF;
+    
+}
+
+
 main span {
     padding: 0 2px;
 }
@@ -91,4 +97,57 @@ main span {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis
+}
+.text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.init{ 
+    margin: 100px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addRemove {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.addRemove > input {
+    height: 54px;
+    width: 260px;
+    font-size: 18px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid #D7D7D7;
+    border-radius: 4px;
+    margin: 94px 0 15px 0;
+    font-size: 18px;
+}
+
+.addRemove > button {
+    height: 45px;
+    width: 110px;
+    background: #E7E7E7;
+    border-radius: 9px;
+    border: none;
+    color: #696969;
+    font-size: 18px;
+}
+.addRemove >p {
+    font-size: 20px;
+}
+.addRemove > p:first-child {
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.hide {
+    display: none;
 }

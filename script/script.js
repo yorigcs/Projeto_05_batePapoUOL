@@ -1,8 +1,4 @@
-
-let user = prompt('Digite seu nome:');
-    
-let username = { name: user};
-
+let user = '';
 
 function loadMessage() {
     const load = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
@@ -52,18 +48,43 @@ function loading(data) {
 }
 
 function enterChat() {
+    
+    user = document.querySelector('.userName').value;
+    const username = {name: user};
     const userChat = 
     axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', username);
+
+    const getHTML = document.querySelector('.addRemove');
+    getHTML.innerHTML = 'Entrando...';
+    
 
     userChat.then(sucesss);
     userChat.catch(isUserIdAlreadyused);
 
     function isUserIdAlreadyused(data) {
-        user = prompt('Digite seu nome:');
-        enterChat();
+        let errorMSG = '';
+        // Já tem um usuário online com esse nick
+        if(data.response.status === 400) {
+            errorMSG = `
+            <p>Já há um usuário com esse nome!</p>
+            <p>Por favor, escolha outro!</p>
+            `;        
+            getHTML.innerHTML = userAlreadyUsed;
+            setInterval(() => window.location.reload(),3000);
+        } else {
+            errorMSG = 'Um erro desconhecido ocorreu';
+            setInterval(() => window.location.reload(),3000);
+        }
+        
     }
     
     function sucesss(data) {
+        document.querySelector('.init').innerHTML = '';
+        document.querySelector('body').classList.remove('color');
+        document.querySelector('header').classList.remove('hide');
+        document.querySelector('footer').classList.remove('hide');
+        loadMessage();
+        setInterval(loadMessage,3000);
         setInterval(() => {
             axios.post(
                 'https://mock-api.driven.com.br/api/v6/uol/status',username)
@@ -72,11 +93,6 @@ function enterChat() {
     }
     
 }
-
-
-enterChat();
-
-setInterval(loadMessage,3000);
 
 
 function sendMsgToServer() {
@@ -98,5 +114,11 @@ function sendMessage(message) {
 
     const send = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages',messageContent);
 
+    send.then(loadMessage);
+    send.catch(errorf);
+}
 
+
+function errorf(erro) {
+    console.log(erro.response.status);
 }

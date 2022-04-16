@@ -13,17 +13,26 @@
     <title>Chat UOL</title>
 </head>
 
-<body>
-    <header>
+<body class="color">
+    <header class="hide">
         <img src="/imgs/logo.svg" alt="logo">
         <ion-icon name="people"></ion-icon>
     </header>
 
     <main>
-        
+        <div class="init">
+            <img src="/imgs/logo2.svg" width="130px" height="92px"  alt="">
+            
+            <div class=" addRemove">
+                <input type="text" class="userName" placeholder="Digite seu nome">
+                <button type="button" onclick="enterChat()">Entrar</button>
+            </div>
+            
+        </div>
+             
     </main>
 
-    <footer>
+    <footer class="hide">
         <input type="text" class="sendMessage" placeholder="Escreva aqui...">
         <ion-icon name="paper-plane-outline" onclick="sendMsgToServer()"></ion-icon>
 
