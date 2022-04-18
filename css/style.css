@@ -3,6 +3,17 @@ body {
     background:  #E5E5E5;
     
 }
+body.color{
+  background: #FFFFFF;
+  
+}
+
+main {  
+  margin: 100px 0;
+  font-size: 14px;
+}
+
+
 header {
     width: 100%;
     height: 80px;
@@ -23,64 +34,72 @@ header > ion-icon {
 
 
 
-footer {
-    width: 100%;
-    height: 80px;
-    background: #FFFFFF;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    bottom: 0;
-    padding: 0 20px;
-    box-sizing: border-box;
+.sendMessageBox {
+  width: 100%;
+  height: 80px;
+  background: #FFFFFF;
+  position: fixed;
+  bottom: 0;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+    
 
 }
+.MessageBoxTo {
+  display: flex;
+  font-size: 14px;
+  font-weight: 300;
+  position: fixed;
+  left: 22px;
+  bottom: 10px;
+}
+.sendTO{
+  max-width: 130px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 6px;
 
-footer > ion-icon {
+}
+.sendMessageBox  > ion-icon {
     font-size: 30px;
 }
-footer > input {
+.sendMessageBox > input {
     
     font-size: 18px;
     font-weight: 400;
     border: none;
     outline: none;    
 }
-footer input::placeholder {
+.sendMessageBox  input::placeholder {
     color: black
 }
 
-main {  
-    margin: 100px 0;
-    font-size: 14px;
-}
 
-body.color{
-    background: #FFFFFF;
-    
-}
 
 
 main span {
     padding: 0 2px;
 }
 
-.status,
-.message,
-.private_message{
-    height: 40px;
-    background: #DCDCDC;
+.element{
+    min-height: 40px;
     margin-bottom: 5px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 }
 
+.status {
+  background: #DCDCDC;;
+}
 .message {
     background: #FFFFFF;
 }
-
 .private_message {
     background: #FFDEDE;
 }
@@ -95,13 +114,14 @@ main span {
     box-sizing: border-box;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
 }
 
-.text{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis
+
+
+.text {
+  max-width: 100%;
+  word-break: break-all;
 }
 
 .init{ 
@@ -162,6 +182,8 @@ main span {
   z-index: 2;
 }
 
+
+
 .opacMenu {
   height: 100%;
   width: 100%;
@@ -190,10 +212,18 @@ main span {
   width: 100%;
   display: flex;
   justify-content: center;
+  
+  font-weight: 700;
+}
+
+p:first-child,
+p:nth-child(4){
+  margin-top: 20px;
 }
 
 .users,
 .viwer {
+  margin-top:  20px;
   width: 100%;
   margin-top: 30px;
   
@@ -205,15 +235,22 @@ main span {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .users {
   max-height: 50%;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 .userOnlineName,
 .typeContent {
   display: flex;
+}
+.userOnlineName .username{
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .check {

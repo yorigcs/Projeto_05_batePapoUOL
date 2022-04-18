@@ -5,6 +5,11 @@ let messageContent = {
 	type: "message" // ou "private_message" para o bônus
 };
 
+let userAndType = {
+    name: 'Todos',
+    msgType: 'Público'
+};
+
 const getHTML = document.querySelector('.addRemove');
 
 function enterChat() {
@@ -173,18 +178,24 @@ function renderOnlineUsers(onlineUsers) {
     let divcontent = ``;
 
     const divUsers = document.querySelector('.users');
-    divUsers.innerHTML = '';
+    divUsers.innerHTML = 
+    `<div class="userscontent" onclick="selectUser(this)">
+        <div class="userOnlineName">
+            <ion-icon name="people"></ion-icon>
+            <span class="username">Todos</span>
+        </div>
+        <ion-icon class="hide check" name="checkmark"></ion-icon>
+    </div>`;
 
     for(let i = 0 ; i < onlineUsers.length; i++) {
 
         divcontent = 
         `<div class="userscontent" onclick="selectUser(this)">
-                <div class="userOnlineName">
-                    <ion-icon name="people"></ion-icon>
-                    <span class="username">${onlineUsers[i]}</span>
-                </div>
-                <ion-icon class="hide" name="checkmark"></ion-icon>
+            <div class="userOnlineName">
+                <ion-icon name="people"></ion-icon>
+                <span class="username">${onlineUsers[i]}</span>
             </div>
+            <ion-icon class="hide" name="checkmark"></ion-icon>
         </div>`;
 
         divUsers.innerHTML += divcontent;
@@ -193,21 +204,29 @@ function renderOnlineUsers(onlineUsers) {
 
 }
 
+
 function selectUser(element) {
     const getCheck =document.querySelector('.userscontent .hide.check');
-    const getUser = element.querySelector('.username').innerHTML;
+    const getUser = element.querySelector('.username').innerHTML;  
+
+    userAndType.name = getUser;
+    MessageBoxTo = ''
     messageContent.to = getUser;
     if(getCheck) {
         getCheck.classList.remove('check');
     }
 
     element.querySelector('.hide').classList.add('check');
+
+    addToBox();
     
 }
 
 function selectType(element) {
     const getCheck =document.querySelector('.type .hide.check');
     const getType = element.querySelector('span').innerHTML;
+    userAndType.msgType = getType;
+
     if(getType === 'Reservadamente') {
         messageContent.type = 'private_message';
     } else {
@@ -216,11 +235,22 @@ function selectType(element) {
     if(getCheck) {
         getCheck.classList.remove('check');
     }
-
     element.querySelector('.hide').classList.add('check');
+
+    addToBox();
     
 }
 
+function addToBox() {
+    let MessageBoxTo = document.querySelector('.MessageBoxTo');
+    if(userAndType.name === 'Todos') {
+        MessageBoxTo.innerHTML = '';
+    } else {
+        MessageBoxTo.innerHTML = `Enviando para <div class="sendTO">${userAndType.name} </div> (${userAndType.msgType})`;
+    }
+        
+    
+}
 
 function sendMsgToServer() {
     let msgContent = document.querySelector('.sendMessage');
