@@ -16,7 +16,7 @@
 <body class="color">
     <header class="hide">
         <img src="/imgs/logo.svg" alt="logo">
-        <ion-icon name="people" onclick="getOnlineUsers()"></ion-icon>
+        <ion-icon name="people" onclick="showListUsers()"></ion-icon>
     </header>
 
     <main>
@@ -33,42 +33,48 @@
         
              
     </main>
-    <div class="sidebarMembers">
-        <p>Escolha um contato</p>
-        <p>para enviar mensagem:</p>
 
-        <div class="users">
-            <div class="userscontent" onclick="selectUser(this)">
-                <div class="userOnlineName">
-                    <ion-icon name="people"></ion-icon>
-                    <span class="username">Todos</span>
+    <div class="listOnlineUsers">
+        <div class="opacMenu" onclick="hideListUsers()"></div>
+
+        <div class="sidebarMembers">
+            <p>Escolha um contato</p>
+            <p>para enviar mensagem:</p>
+    
+            <div class="users">
+                <div class="userscontent" onclick="selectUser(this)">
+                    <div class="userOnlineName">
+                        <ion-icon name="people"></ion-icon>
+                        <span class="username">Todos</span>
+                    </div>
+                    <ion-icon class="hide check" name="checkmark"></ion-icon>
                 </div>
-                <ion-icon class="hide check" name="checkmark"></ion-icon>
+                
             </div>
-            
+            <p>Escolha a visibilidade</p>
+            <div class="viwer">
+                <div class="type" onclick="selectType(this)">
+                    <div class="typeContent">
+                        <ion-icon name="lock-open"></ion-icon>
+                        <span>Público</span>
+                    </div>
+                    <ion-icon class="hide check" name="checkmark"></ion-icon>
+                </div>
+    
+                <div class="type" onclick="selectType(this)">
+                    <div class="typeContent">
+                        <ion-icon name="lock-closed"></ion-icon>
+                        <span>Reservadamente</span>
+                    </div>
+                    <ion-icon class="hide" name="checkmark"></ion-icon>
+                </div>
+    
+            </div>
+    
+    
         </div>
-        <p>Escolha a visibilidade</p>
-        <div class="viwer">
-            <div class="type" onclick="selectType(this)">
-                <div class="typeContent">
-                    <ion-icon name="lock-open"></ion-icon>
-                    <span>Público</span>
-                </div>
-                <ion-icon class="hide check" name="checkmark"></ion-icon>
-            </div>
-
-            <div class="type" onclick="selectType(this)">
-                <div class="typeContent">
-                    <ion-icon name="lock-closed"></ion-icon>
-                    <span>Reservadamente</span>
-                </div>
-                <ion-icon class="hide" name="checkmark"></ion-icon>
-            </div>
-
-        </div>
-
-
     </div>
+    
 
     <footer class="hide">
         <input type="text" class="sendMessage" placeholder="Escreva aqui...">

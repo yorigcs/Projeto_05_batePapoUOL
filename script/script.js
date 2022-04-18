@@ -48,6 +48,7 @@ function enterChat() {
         loadMessage();
         getOnlineUsers();
         setInterval(loadMessage,3000);
+        setInterval(getOnlineUsers,10000);
         setInterval(() => {
             axios.post(
                 'https://mock-api.driven.com.br/api/v6/uol/status',username);
@@ -91,36 +92,53 @@ function loadMessage() {
         renderUsers.innerHTML = '';
         
         for(let i =0; i < dataUsers.length; i++) {
-            if(dataUsers[i].type === 'status') {
-                renderUsers.innerHTML += `
-                <div class="status element">
-                <span class="time">(${dataUsers[i].time})</span>
-                <span class="from">${dataUsers[i].from}</span>
-                <span class="text">${dataUsers[i].text}</span>
-                </div>
-                `;
-            } else if (dataUsers[i].type === 'message') {
-                renderUsers.innerHTML += `
-                <div class="message element">
-                <span class="time">(${dataUsers[i].time})</span>
-                <span class="from">${dataUsers[i].from}</span>
-                <span>para</span>
-                <span class="to">${dataUsers[i].to}:</span>
-                <span class="text">${dataUsers[i].text}</span>
-                </div>
-                `;
-            } else {
-                renderUsers.innerHTML += `
-                <div class="private_message element">
-                <span class="time">(${dataUsers[i].time})</span>
-                <span class="from">${dataUsers[i].from}</span>
-                <span>para</span>
-                <span class="to">${dataUsers[i].to}:</span>
-                <span class="text">${dataUsers[i].text}</span>
-                </div>
-                `;
+
+            switch(dataUsers[i].type) {
+                case 'message': {
+                    renderUsers.innerHTML += `
+                    <div class="message element">
+                    <span class="time">(${dataUsers[i].time})</span>
+                    <span class="from">${dataUsers[i].from}</span>
+                    <span>para</span>
+                    <span class="to">${dataUsers[i].to}:</span>
+                    <span class="text">${dataUsers[i].text}</span>
+                    </div>
+                    `;
+                    break;
+                    }
+                
+                    
+                case 'private_message': {
+                    if(dataUsers[i].from === messageContent.from 
+                        || dataUsers[i].to === messageContent.from ) {
+
+                            renderUsers.innerHTML += `
+                            <div class="private_message element">
+                            <span class="time">(${dataUsers[i].time})</span>
+                            <span class="from">${dataUsers[i].from}</span>
+                            <span>para</span>
+                            <span class="to">${dataUsers[i].to}:</span>
+                            <span class="text">${dataUsers[i].text}</span>
+                            </div>
+                            `;
+                            break;
+                        }
+                    
+                    }
+                default: {
+                    renderUsers.innerHTML += `
+                    <div class="status element">
+                    <span class="time">(${dataUsers[i].time})</span>
+                    <span class="from">${dataUsers[i].from}</span>
+                    <span class="text">${dataUsers[i].text}</span>
+                    </div>
+                    `;
+                    break;
+                }
+                    
             }
             
+
         }
         document.querySelectorAll('.element')[99].scrollIntoView();
     }
@@ -155,6 +173,7 @@ function renderOnlineUsers(onlineUsers) {
     let divcontent = ``;
 
     const divUsers = document.querySelector('.users');
+    divUsers.innerHTML = '';
 
     for(let i = 0 ; i < onlineUsers.length; i++) {
 
@@ -218,6 +237,18 @@ function sendMessage(message) {
 
 
 
+
+
+function showListUsers() {
+    document.querySelector('.listOnlineUsers').style.height = '100%';
+
+}
+
+function hideListUsers() {
+    document.querySelector('.listOnlineUsers').style.height = '0';
+
+}
+
 function allowEnterButton() {
     document.querySelector('.userName').addEventListener('keydown',
 (event) => {
@@ -234,5 +265,4 @@ document.querySelector('.sendMessage').addEventListener('keydown',
     }
 });
 }
-
 allowEnterButton();

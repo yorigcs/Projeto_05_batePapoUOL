@@ -66,24 +66,23 @@ main span {
     padding: 0 2px;
 }
 
-.status {
+.status,
+.message,
+.private_message{
     height: 40px;
     background: #DCDCDC;
     margin-bottom: 5px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-
 }
 
 .message {
-    height: 40px;
     background: #FFFFFF;
-    margin-bottom: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+}
 
+.private_message {
+    background: #FFDEDE;
 }
 
 .time {
@@ -152,18 +151,38 @@ main span {
 .hide {
     display: none;
 }
+.listOnlineUsers {
+  width: 100%;
+  height: 0;  
+  transition: 1s;
+  position: fixed;
+  
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
 
+.opacMenu {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+}
 .sidebarMembers {
   
   height: 100%;
   width: 70%;
-  position: fixed;
-  overflow: hidden;
+  background:#FFFFFF;
+  position: absolute;
   top: 0;
   right: 0;
-  z-index: 2;
+  overflow: hidden;
+  z-index: 4;
   box-sizing: border-box;
-  padding: 20px 40px;
+  padding: 0 8%;
 
 }
 
@@ -177,7 +196,7 @@ main span {
 .viwer {
   width: 100%;
   margin-top: 30px;
-  margin-left: 15%;
+  
   
 }
 .userscontent,
@@ -186,6 +205,11 @@ main span {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.users {
+  max-height: 50%;
+  overflow: scroll;
 }
 .userOnlineName,
 .typeContent {
