@@ -121,7 +121,7 @@ function loadMessage() {
                             <div class="private_message element">
                             <span class="time">(${dataUsers[i].time})</span>
                             <span class="from">${dataUsers[i].from}</span>
-                            <span>para</span>
+                            <span>reservadamente para</span>
                             <span class="to">${dataUsers[i].to}:</span>
                             <span class="text">${dataUsers[i].text}</span>
                             </div>
