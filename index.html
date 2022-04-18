@@ -16,7 +16,7 @@
 <body class="color">
     <header class="hide">
         <img src="/imgs/logo.svg" alt="logo">
-        <ion-icon name="people"></ion-icon>
+        <ion-icon name="people" onclick="getOnlineUsers()"></ion-icon>
     </header>
 
     <main>
@@ -26,11 +26,49 @@
             <div class=" addRemove">
                 <input type="text" class="userName" placeholder="Digite seu nome">
                 <button type="button" onclick="enterChat()">Entrar</button>
+                
             </div>
             
         </div>
+        
              
     </main>
+    <div class="sidebarMembers">
+        <p>Escolha um contato</p>
+        <p>para enviar mensagem:</p>
+
+        <div class="users">
+            <div class="userscontent" onclick="selectUser(this)">
+                <div class="userOnlineName">
+                    <ion-icon name="people"></ion-icon>
+                    <span class="username">Todos</span>
+                </div>
+                <ion-icon class="hide check" name="checkmark"></ion-icon>
+            </div>
+            
+        </div>
+        <p>Escolha a visibilidade</p>
+        <div class="viwer">
+            <div class="type" onclick="selectType(this)">
+                <div class="typeContent">
+                    <ion-icon name="lock-open"></ion-icon>
+                    <span>Público</span>
+                </div>
+                <ion-icon class="hide check" name="checkmark"></ion-icon>
+            </div>
+
+            <div class="type" onclick="selectType(this)">
+                <div class="typeContent">
+                    <ion-icon name="lock-closed"></ion-icon>
+                    <span>Reservadamente</span>
+                </div>
+                <ion-icon class="hide" name="checkmark"></ion-icon>
+            </div>
+
+        </div>
+
+
+    </div>
 
     <footer class="hide">
         <input type="text" class="sendMessage" placeholder="Escreva aqui...">
